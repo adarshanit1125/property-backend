@@ -37,6 +37,8 @@ router.post("/", protect, async (req, res) => {
             location: req.body.location,
             price: req.body.price,
             image: req.body.image,
+            description: req.body.description,
+
         })
 
         const savedProperty = await property.save()
@@ -56,6 +58,7 @@ router.put("/:id", protect, async (req, res) => {
                 location: req.body.location,
                 price: req.body.price,
                 image: req.body.image,
+                description: req.body.description,
             },
             { new: true }
         )
