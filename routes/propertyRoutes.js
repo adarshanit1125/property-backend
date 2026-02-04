@@ -14,6 +14,21 @@ router.get("/", async (req, res) => {
     }
 })
 
+// 🔓 PUBLIC — GET SINGLE PROPERTY BY ID
+router.get("/:id", async (req, res) => {
+    try {
+        const property = await Property.findById(req.params.id)
+
+        if (!property) {
+            return res.status(404).json({ message: "Property not found" })
+        }
+
+        res.json(property)
+    } catch (error) {
+        res.status(400).json({ message: "Invalid property ID" })
+    }
+})
+
 // 🔐 PROTECTED — ADD PROPERTY
 router.post("/", protect, async (req, res) => {
     try {
